@@ -4,3 +4,7 @@ e.g. Tutors.py -- Args: Tutor number, name, surname, room number, students assig
 
 gui.py and quota -- lilis code, the gui has simple buttons and navigation but doesnt carry out an functions as i dont know how to do that. 
 quota works on comandline as i cant carry out the gui work until i get the database. 
+
+
+new.py - opens a csv distributes into 4 lists afterwords sorts them( figured why not sort them before putting them in saves some headache)
+then puts them into the database
