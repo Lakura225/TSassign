@@ -45,6 +45,19 @@ def CSVtoMySql():
         conn.rollback()
 
 
-def MySqlsort():
+def method2():
+    import csv, sqlite3
 
+    con = sqlite3.connect('students.db')
+    cur = con.cursor()
+    #cur.execute("CREATE TABLE t (col1, col2);")  # use your column names here (we already have a database)
+
+    with open('test.csv', 'rb') as fin:  # `with` statement available in 2.5+
+        # csv.DictReader uses first line in file for column headings by default
+        dr = csv.DictReader(fin)  # comma is default delimiter
+        to_db = [(i['Student ID'], i['Name(s)'], i['Surname'], i['Course'], i['Tutor'], ) for i in dr]
+
+    cur.executemany("INSERT INTO t (Student ID, Name(s), Surname, Course, Tutor) VALUES (sID, sSurname, sName, sEmail, sCourse);", to_db)
+    con.commit()
+    con.close()
     return
