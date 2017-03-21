@@ -57,7 +57,7 @@ def method2():
         dr = csv.DictReader(fin)  # comma is default delimiter
         to_db = [(i['Student ID'], i['Name(s)'], i['Surname'], i['Course'], i['Tutor'], ) for i in dr]
 
-    cur.executemany("INSERT INTO t (Student ID, Name(s), Surname, Course, Tutor) VALUES (sID, sSurname, sName, sEmail, sCourse);", to_db)
+    cur.executemany("INSERT INTO students (Student ID, Name(s), Surname, Course, Tutor) VALUES (sID, sSurname, sName, sEmail, sCourse);", to_db)
     con.commit()
     con.close()
     return
