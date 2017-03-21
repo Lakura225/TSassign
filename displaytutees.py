@@ -2,6 +2,7 @@
 import sqlite3
 from tkinter import *
 from tkinter.ttk import *
+Search = "testor"
 conn = sqlite3.connect('Students.db')
 
 class App(Frame):
@@ -33,9 +34,10 @@ class App(Frame):
         self.treeview = tv
         self.grid_rowconfigure(0, weight = 1)
         self.grid_columnconfigure(0, weight = 1)
+        
 
     def LoadTable(self):
-        self.cur.execute("SELECT * FROM Student_List")
+        self.cur.execute("SELECT * FROM Student_List WHERE Tutor = ?",(Search,))
         return self.cur.fetchall()
 
 def main():
