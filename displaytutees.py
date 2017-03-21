@@ -2,12 +2,14 @@
 import sqlite3
 from tkinter import *
 from tkinter.ttk import *
-conn = sqlite3.connect('name.db')
+conn = sqlite3.connect('Students.db')
 
 class App(Frame):
 
     def __init__(self, parent):
         Frame.__init__(self, parent)
+        self.connection = sqlite3.connect('Students.db')
+        self.cur = self.connection.cursor()
         self.CreateUI()
         self.LoadTable()
         self.grid(sticky = (N,S,W,E))
@@ -31,7 +33,7 @@ class App(Frame):
         self.grid_columnconfigure(0, weight = 1)
 
     def LoadTable(self):
-        self.cur.execute("SELECT * FROM Student List")
+        self.cur.execute("SELECT * FROM Student_List")
         return self.cur.fetchall()
 
 def main():
