@@ -9,6 +9,7 @@ import sqlite3
 
 sID = []
 sName = []
+sSurn = []
 sEmail = []
 sCourse = []
 
@@ -19,14 +20,15 @@ def openCSV(filename):
         for row in rdr:
             sID.append((int(row[0])))
             sName.append((str(row[1])))
-            sEmail.append((str(row[2])))
-            sCourse.append((str(row[3])))
+            sSurn.append((str(row[2])))
+            sEmail.append((str(row[3])))
+            sCourse.append((str(row[4])))
             sID.sort()
             sName.sort()
             sEmail.sort()
             sCourse.sort()
             
-        return sID, sName, sEmail, sCourse
+        return sID, sName, sSurn, sEmail, sCourse
 #openCSV("test.csv")
 
 def CSVtoMySql():
