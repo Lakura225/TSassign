@@ -1,17 +1,17 @@
 # https://www.google.co.uk/webhp?sourceid=chrome-instant&rlz=1C1PRFI_enGB711GB711&ion=1&espv=2&ie=UTF-8#q=insert+into+mysql+from+array+python&*
 # row 1 student id
-# row 2 student name(whole)
-# row 3 course
-# row 4 email
-# row 5 wifi password lelele
+# row 2 name
+# row 3 surname
+# row 4 course
+# row 5 email
 import csv
 import sqlite3
 
 sID = []
 sName = []
-sSurn = []
 sEmail = []
 sCourse = []
+sSurname = []
 
 def openCSV(filename):
     with open(filename) as csvfile:
@@ -20,22 +20,23 @@ def openCSV(filename):
         for row in rdr:
             sID.append((int(row[0])))
             sName.append((str(row[1])))
-            sSurn.append((str(row[2])))
+            sSurname.append((str(row[2])))
             sEmail.append((str(row[3])))
             sCourse.append((str(row[4])))
             sID.sort()
             sName.sort()
+            sSurname.sort()
             sEmail.sort()
             sCourse.sort()
-            
-        return sID, sName, sSurn, sEmail, sCourse
-#openCSV("test.csv")
+
+        return sID, sSurname, sName, sEmail, sCourse
+
 
 def CSVtoMySql():
     conn = sqlite3.connect('students.db')
-    q = """ insert ignore into TABLE1 (
-            sID, sName, sEmail, sCourse )
-            values (%s,%s,%s,%s)
+    q = """ INSERT IGNORE into TABLE1 (
+            sID, sSurname, sName, sEmail, sCourse )
+            values (%s, %s, %s, %s, %s)
         """
     try:
         conn.executemany(q, 'students.db')
@@ -43,3 +44,7 @@ def CSVtoMySql():
     except:
         conn.rollback()
 
+
+def MySqlsort():
+
+    return
