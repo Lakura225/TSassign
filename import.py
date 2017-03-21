@@ -36,7 +36,7 @@ def openCSV(filename):
 
 def CSVtoMySql():
     conn = sqlite3.connect('students.db')
-    q = """ INSERT IGNORE into TABLE1 (
+    q = """ INSERT IGNORE into students (
             sID, sName, sSurname, sSurname2, sTutor, sCourse, sAcadYear, sEmail )
             values (%s, %s, %s, %s, %s, %s, %s, %s, %s)
         """
