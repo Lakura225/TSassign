@@ -16,7 +16,7 @@ class SampleApp(tk.Tk):
     
 
         self.frames = {}
-        for F in (StartPage, tutorlog, seniorlog, senior, tutor):
+        for F in (StartPage, search):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
@@ -35,68 +35,37 @@ class StartPage(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        label = tk.Label(self, text="Welcome, please choose a log in ", font=TITLE_FONT)
+        label = tk.Label(self, text="Cardiff university, Personal Tutor system ", font=TITLE_FONT)
         label.pack(side="top", fill="x", pady=10)
 
-        button1 = tk.Button(self, text="Tutor log in ",
-                            command=lambda: controller.show_frame("tutorlog"))
-        button2 = tk.Button(self, text="Senior personal tutor log in ",
-                            command=lambda: controller.show_frame("seniorlog"))
+        button1 = tk.Button(self, text="Continue",
+                            command=lambda: controller.show_frame("search"))
+        button2 = tk.Button(self, text="Exit ",
+                            command=lambda: controller.show_frame(""))#exit tk function 
         button1.pack()
         button2.pack()
 
 
-class tutorlog(tk.Frame):
+class search(tk.Frame):
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.controller = controller
-        label = tk.Label(self, text="Tutor Log in", font=TITLE_FONT)
+        label = tk.Label(self, text="Please choose a search", font=TITLE_FONT)
         label.pack(side="top", fill="x", pady=10)
-        button1 = tk.Button(self, text="Back",
+        button1 = tk.Button(self, text="list of tutees for a particular personal tutor",
+                            command=lambda: controller.show_frame(""))
+        button2 = tk.Button(self, text=" Search for individual students ",
+                            command=lambda: controller.show_frame(""))#links to function needs to trigger input 
+        button3 = tk.Button(self, text="Quota of tutees",
+                            command=lambda: controller.show_frame(""))
+        button4 = tk.Button(self, text="Back",
                            command=lambda: controller.show_frame("StartPage"))
-        button2 = tk.Button(self, text="Enter",
-                            command=lambda: controller.show_frame("tutor"))
+        button1.pack()
         button2.pack()
-        button1.pack()
-
-class seniorlog(tk.Frame):
-
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.controller = controller
-        label = tk.Label(self, text="Senior personal tutor Log in", font=TITLE_FONT)
-        label.pack(side="top", fill="x", pady=10)
-        button = tk.Button(self, text="Back",
-                           command=lambda: controller.show_frame("StartPage"))
-        button1 = tk.Button(self, text="Enter",
-                            command=lambda: controller.show_frame("senior"))
-        button1.pack()
-        button.pack()
-class senior(tk.Frame):
-
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.controller = controller
-        label = tk.Label(self, text="Search", font=TITLE_FONT)
-        label.pack(side="top", fill="x", pady=10)
-        button = tk.Button(self, text="Back",
-                           command=lambda: controller.show_frame("seniorlog"))
-        button.pack()
-
-class tutor(tk.Frame):
-
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.controller = controller
-        label = tk.Label(self, text="Search", font=TITLE_FONT)
-        label.pack(side="top", fill="x", pady=10)
-        button = tk.Button(self, text="Back",
-                           command=lambda: controller.show_frame("tutorlog"))
-        button.pack()
-
-
-
+        button3.pack()
+        button4.pack()
+                                                                  
 
 if __name__ == "__main__":
     app = SampleApp()
