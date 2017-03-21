@@ -16,7 +16,7 @@ class SampleApp(tk.Tk):
     
 
         self.frames = {}
-        for F in (StartPage, search):
+        for F in (StartPage, search, quit):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
@@ -29,10 +29,19 @@ class SampleApp(tk.Tk):
         frame = self.frames[page_name]
         frame.tkraise()
 
+class quit(tk.Frame):
+    def quit(self):
+        global root
+        root.quit()
+
+    #root = Tk()
+    #while True:
+    #    Button(root, text="Quit", command=quit).pack()
+   #     root.mainloop()
 
 class StartPage(tk.Frame):
 
-    def __init__(self, parent, controller):
+    def __init__(self, parent, controller, quit):
         tk.Frame.__init__(self, parent)
         self.controller = controller
         label = tk.Label(self, text="Cardiff university, Personal Tutor system ", font=TITLE_FONT)
@@ -41,14 +50,14 @@ class StartPage(tk.Frame):
         button1 = tk.Button(self, text="Continue",
                             command=lambda: controller.show_frame("search"))
         button2 = tk.Button(self, text="Exit ",
-                            command=lambda: controller.show_frame(""))#exit tk function 
+                            command=lambda: controller.show_frame("quit"))#exit tk function
         button1.pack()
         button2.pack()
 
 
 class search(tk.Frame):
 
-    def __init__(self, parent, controller):
+    def __init__(self, parent, controller, quit):
         tk.Frame.__init__(self, parent)
         self.controller = controller
         label = tk.Label(self, text="Please choose a search", font=TITLE_FONT)
