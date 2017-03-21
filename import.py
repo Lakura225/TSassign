@@ -60,7 +60,7 @@ def method2():
         to_db = [(i['Student ID'], i['Name(s)'], i['Surname'], i['Course'], i['Tutor'],) for i in dr]
 
     cur.executemany(
-        "INSERT INTO students (Student ID, Name, Surname, Surname2, Tutor, Course, Academic_Year, Email) VALUES (sID, sName, sSurname, sSurname2, sTutor, sCourse, sAcadYear, sEmail);",
+        "INSERT INTO students (Student_Code, Surname, Forname1, Forname2, Tutor, Course, Acad_Year, Univ_Email) VALUES (sID, sName, sSurname, sSurname2, sTutor, sCourse, sAcadYear, sEmail);",
         to_db)
     con.commit()
     con.close()
