@@ -31,8 +31,8 @@ class App(Frame):
         self.grid_columnconfigure(0, weight = 1)
 
     def LoadTable(self):
-        self.treeview.insert('', 'end', text="First", values=('10:00',
-                             '10:10', 'Ok'))
+        self.cur.execute("SELECT * FROM Student List")
+        return self.cur.fetchall()
 
 def main():
     root = Tk()
@@ -47,6 +47,6 @@ def displaytutees(search):
 	c = conn.cursor()
 
 	#Attempting to retreive data from sqlite
-	for row in c.execute('SELECT * FROM tutees ORDER BY student id'):
+	for row in c.execute('SELECT * FROM Student list ORDER BY Student ID'):
 		#Put the result in the UI, however we are doing that
-		print row
+		print (row)
