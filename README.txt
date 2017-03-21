@@ -6,7 +6,7 @@ gui.py and quota -- lilis code, the gui has simple buttons and navigation but do
 quota works on comandline as i cant carry out the gui work until i get the database. 
 
 
-new.py - opens a csv distributes into 4 lists afterwords sorts them( figured why not sort them before putting them in saves some headache)
+new.py - opens a csv distributes into 5 lists afterwords sorts them( figured why not sort them before putting them in saves some headache)
 then puts them into the database
 
 displaytutees.py - Al - needs a search arg to give it a tutor ID, then makes a list of said tutors tutees
