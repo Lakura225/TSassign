@@ -3,22 +3,18 @@ import sqlite3 as db
 
 conn = db.connect("students.db")
 
-def UsrInput(searchtype,query):
+def TutorSearch(Surname,name,Title):
 
-	Query1 = normalise_input(query) #eliminate most problems with user input
+	with conn:
+		conn.row_factory = db.Row
 
-	#check which field user is searching by for personal tutor.
+		cur = conn.cursor()
+		cur.execute("SELECT Tutor_ID FROM Tutors WHERE Name = name AND Surname = surname" )
+		Tutornum = cur.fetchall()
+		return Tutornum
 
-	if searchtype == 0:
-		blah
-	elif searchtype == 1:
-		blarh
-	elif searchtype == 2:
-		barl
-	elif searchtype ==3:
-		lashdh
-	else:
-		return False
+def StudentList(tutornumber):
+
 
 def remove_punct(text):
 
