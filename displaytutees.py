@@ -12,7 +12,7 @@ class App(Frame):
         self.connection = sqlite3.connect('Students.db')
         self.cur = self.connection.cursor()
         self.CreateUI()
-        self.LoadTable()
+        self.DisplayThem()
         self.grid(sticky = (N,S,W,E))
         parent.grid_rowconfigure(0, weight = 1)
         parent.grid_columnconfigure(0, weight = 1)
@@ -39,8 +39,14 @@ class App(Frame):
         self.grid_rowconfigure(0, weight = 1)
         self.grid_columnconfigure(0, weight = 1)
         
+    def DisplayThem(self):
+        data = self.ReadDB()
+        for index, dat in enumerate(data):
+            Label(self.master, text=dat[0]).grid(row=index+1, column=0)
+            Label(self.master, text=dat[1]).grid(row=index+1, column=1)
+            Label(self.master, text=dat[2]).grid(row=index+1, column=2)
 
-    def LoadTable(self):
+    def ReadDB(self):
         self.cur.execute("SELECT * FROM Student_List WHERE Tutor = ?",(Search,))
         return self.cur.fetchall()
 
