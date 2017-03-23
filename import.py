@@ -4,34 +4,58 @@
 # row 3 surname
 # row 4 course
 # row 5 email
+"""
+def CSVtoMySql():
+    conn = sqlite3.connect('students.db')
+    q = INSERT IGNORE into students (
+            sID, sName, sSurname, sSurname2, sTutor, sCourse, sAcadYear, sEmail )
+            values (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+
+    try:
+        conn.executemany(q, 'students.db')
+        conn.commit()
+    except:
+        conn.rollback()
+
+"""
 import csv
 import sqlite3
 
-sID = []
-sName = []
-sSurname = []
-sSurname2 = []
-sTutor = []
-sCourse = []
-sAcadYear = []
-sEmail = []
-
+Student_Code = []
+Surname = []
+Forname1 = []
+Forname2 = []
+Tutor = []
+Course = []
+Acad_Year = []
+Univ_Email = []
+s=[Student_Code, Surname, Forname1, Forname2, Tutor, Course, Acad_Year, Univ_Email]
 
 def openCSV():
     with open("test.csv") as csvfile:
         rdr = csv.reader(csvfile)
         next(rdr)
         for row in rdr:
-            sID.append((int(row[0])))
-            sName.append((str(row[1])))
-            sSurname.append((str(row[2])))
-            sSurname2.append((str(row[3])))
-            sTutor.append((str(row[4])))
-            sCourse.append((str(row[5])))
-            sAcadYear.append((str(row[6])))
-            sEmail.append((str(row[7])))
+            Student_Code.append((str(row[0])))
+            Surname.append((str(row[1])))
+            Forname1.append((str(row[2])))
+            Forname2.append((str(row[3])))
+            Tutor.append((str(row[4])))
+            Course.append((str(row[5])))
+            Acad_Year.append((str(row[6])))
+            Univ_Email.append((str(row[7])))
 
-        return sID, sName, sSurname, sSurname2, sTutor, sCourse, sAcadYear, sEmail
+        return Student_Code, Surname, Forname1, Forname2, Tutor, Course, Acad_Year, Univ_Email
+
+def CSVtoMySql():
+    conn = sqlite3.connect('students.db')
+    q = "INSERT INTO Student VALUE (%s, %s, %s, %s, %s, %s, %s, %s, %s)", s
+
+    try:
+        conn.executemany(q, s)
+        conn.commit()
+    except:
+        conn.rollback()
 
 
 
@@ -41,15 +65,15 @@ def method2():
 
     con = sqlite3.connect('students.db')
     cur = con.cursor()
-    cur.execute("CREATE TABLE Student (Student_Code, Surname, Forname1, Forname2, Tutor, Course, Acad_Year, Univ_Email);")  # use your column names here (we already have a database)
+    #cur.execute("CREATE TABLE Student (Student_Code, Surname, Forname1, Forname2, Tutor, Course, Acad_Year, Univ_Email);")  # use your column names here (we already have a database)
 
     with open('test.csv', 'r') as fin:  # `with` statement available in 2.5+
         # csv.DictReader uses first line in file for column headings by default
         dr = csv.DictReader(fin)  # comma is default delimiter
-        to_db = [(i['Student_code'], i['Surname'], i['Forname1'], i['Forname2'], i['Tutor'], i['Course'], i['Acad_Year'], i['Univ_Email'],) for i in dr]
-
+        to_db = [(i['Student_Code'], i['Surname'], i['Forname1'], i['Forname2'], i['Tutor'], i['Course'], i['Acad_Year'], i['Univ_Email'],) for i in dr]
+# VALUES(?,?,?,?)''',(name1,phone1, email1, password1))
     cur.executemany(
-        "INSERT INTO Student (Student_Code, Surname, Forname1, Forname2, Tutor, Course, Acad_Year, Univ_Email) VALUES (sID, sName, sSurname, sSurname2, sTutor, sCourse, sAcadYear, sEmail);",
+        "INSERT INTO Student (Student_Code, Surname, Forname1, Forname2, Tutor, Course, Acad_Year, Univ_Email) VALUES (?,?,?,?,?,?,?,?),(Student_Code, Surname, Forname1, Forname2, Tutor, Course, Acad_Year, Univ_Email);",
         to_db)
     con.commit()
     con.close()
