@@ -6,7 +6,20 @@
 # row 5 email
 import csv
 import sqlite3
+"""
+def CSVtoMySql():
+    conn = sqlite3.connect('students.db')
+    q = INSERT IGNORE into students (
+            sID, sName, sSurname, sSurname2, sTutor, sCourse, sAcadYear, sEmail )
+            values (%s, %s, %s, %s, %s, %s, %s, %s, %s)
 
+    try:
+        conn.executemany(q, 'students.db')
+        conn.commit()
+    except:
+        conn.rollback()
+
+"""
 sID = []
 sName = []
 sSurname = []
@@ -34,17 +47,6 @@ def openCSV(filename):
         return sID, sName, sSurname, sSurname2, sTutor, sCourse, sAcadYear, sEmail
 
 
-def CSVtoMySql():
-    conn = sqlite3.connect('students.db')
-    q = """ INSERT IGNORE into students (
-            sID, sName, sSurname, sSurname2, sTutor, sCourse, sAcadYear, sEmail )
-            values (%s, %s, %s, %s, %s, %s, %s, %s, %s)
-        """
-    try:
-        conn.executemany(q, 'students.db')
-        conn.commit()
-    except:
-        conn.rollback()
 
 
 def method2():
@@ -57,7 +59,7 @@ def method2():
     with open('test.csv', 'rb') as fin:  # `with` statement available in 2.5+
         # csv.DictReader uses first line in file for column headings by default
         dr = csv.DictReader(fin)  # comma is default delimiter
-        to_db = [(i['Student ID'], i['Name(s)'], i['Surname'], i['Course'], i['Tutor'],) for i in dr]
+        to_db = [(i['Student_code'], i['Surname'], i['Forname1'], i['Forname2'], i['Tutor'], i['Course'], i['Acad_Year'], i['Univ_Email'],) for i in dr]
 
     cur.executemany(
         "INSERT INTO students (Student_Code, Surname, Forname1, Forname2, Tutor, Course, Acad_Year, Univ_Email) VALUES (sID, sName, sSurname, sSurname2, sTutor, sCourse, sAcadYear, sEmail);",
