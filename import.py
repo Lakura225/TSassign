@@ -41,16 +41,16 @@ def method2():
 
     con = sqlite3.connect('students.db')
     cur = con.cursor()
-    # cur.execute("CREATE TABLE t (col1, col2);")  # use your column names here (we already have a database)
+    cur.execute("CREATE TABLE Student (Student_Code, Surname, Forname1, Forname2, Tutor, Course, Acad_Year, Univ_Email);")  # use your column names here (we already have a database)
 
-    with open('test.csv', 'rb') as fin:  # `with` statement available in 2.5+
+    with open('test.csv', 'r') as fin:  # `with` statement available in 2.5+
         # csv.DictReader uses first line in file for column headings by default
         dr = csv.DictReader(fin)  # comma is default delimiter
         to_db = [(i['Student_code'], i['Surname'], i['Forname1'], i['Forname2'], i['Tutor'], i['Course'], i['Acad_Year'], i['Univ_Email'],) for i in dr]
 
     cur.executemany(
-        "INSERT INTO students (Student_Code, Surname, Forname1, Forname2, Tutor, Course, Acad_Year, Univ_Email) VALUES (sID, sName, sSurname, sSurname2, sTutor, sCourse, sAcadYear, sEmail);",
+        "INSERT INTO Student (Student_Code, Surname, Forname1, Forname2, Tutor, Course, Acad_Year, Univ_Email) VALUES (sID, sName, sSurname, sSurname2, sTutor, sCourse, sAcadYear, sEmail);",
         to_db)
     con.commit()
     con.close()
-    return
+    
