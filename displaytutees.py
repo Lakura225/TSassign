@@ -40,12 +40,14 @@ class App(Frame):
         self.grid_rowconfigure(0, weight = 1)
         self.grid_columnconfigure(0, weight = 1)
         
-    def DisplayThem(self):
+    def DisplayThem(tk.frame):
         data = self.ReadDB()
+        tk.Frame.__init__(self, parent, background="black")
         for index, dat in enumerate(data):
-            Label(self.master, text=dat[0]).grid(row=index+1, column=0)
-            Label(self.master, text=dat[1]).grid(row=index+1, column=1)
-            Label(self.master, text=dat[2]).grid(row=index+1, column=2)
+            label = tk.Label(self, text="%s/%s" % (row, column), 
+                                 borderwidth=0, width=10)
+            label.grid(row=row, column=column, sticky="nsew", padx=1, pady=1)
+            current_row.append(label)
 
     def ReadDB(self):
         self.cur.execute("SELECT * FROM Student_List WHERE Tutor = ?",(Search,))
