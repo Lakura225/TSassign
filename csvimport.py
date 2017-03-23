@@ -60,20 +60,20 @@ def CSVtoMySql():
 
 
 
-def method2():
+def method2(Filename):
     import csv, sqlite3
 
     con = sqlite3.connect('students.db')
     cur = con.cursor()
     #cur.execute("CREATE TABLE Student (Student_Code, Surname, Forname1, Forname2, Tutor, Course, Acad_Year, Univ_Email);")  # use your column names here (we already have a database)
 
-    with open('test.csv', 'r') as fin:  # `with` statement available in 2.5+
+    with open(Filename, 'r') as fin:  # `with` statement available in 2.5+
         # csv.DictReader uses first line in file for column headings by default
         dr = csv.DictReader(fin)  # comma is default delimiter
-        to_db = [(i['Student_Code'], i['Surname'], i['Forname1'], i['Forname2'], i['Tutor'], i['Course'], i['Acad_Year'], i['Univ_Email'],) for i in dr]
+        to_db = [(i['Student_Code'], i['Surname'], i['Forename1'], i['Forename2'], i['Tutor'], i['Course'], i['Acad_Year'], i['Univ_Email'],) for i in dr]
 # VALUES(?,?,?,?)''',(name1,phone1, email1, password1))
     cur.executemany(
-        "INSERT INTO Student (Student_Code, Surname, Forname1, Forname2, Tutor, Course, Acad_Year, Univ_Email) VALUES (?,?,?,?,?,?,?,?),(Student_Code, Surname, Forname1, Forname2, Tutor, Course, Acad_Year, Univ_Email);",
+        "INSERT INTO Student_List (Student_Code, Surname, Forename1, Forename2, Tutor, Course, Acad_Year, Univ_Email) VALUES (?,?,?,?,?,?,?,?),(Student_Code, Surname, Forename1, Forename2, Tutor, Course, Acad_Year, Univ_Email);",
         to_db)
     con.commit()
     con.close()
