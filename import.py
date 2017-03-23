@@ -6,20 +6,7 @@
 # row 5 email
 import csv
 import sqlite3
-"""
-def CSVtoMySql():
-    conn = sqlite3.connect('students.db')
-    q = INSERT IGNORE into students (
-            sID, sName, sSurname, sSurname2, sTutor, sCourse, sAcadYear, sEmail )
-            values (%s, %s, %s, %s, %s, %s, %s, %s, %s)
 
-    try:
-        conn.executemany(q, 'students.db')
-        conn.commit()
-    except:
-        conn.rollback()
-
-"""
 sID = []
 sName = []
 sSurname = []
