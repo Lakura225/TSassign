@@ -1,81 +1,31 @@
 
-import tkinter as tk   
-
+from tkinter import *
+import os
 
 TITLE_FONT = ("Helvetica", 18 )
+FONT=("Helvetica", 13)
 
-class SampleApp(tk.Tk):
+class App:
+    def __init__(self, master):
+        root.title("Personal Tutor System")
+        Label(root,text="Cardiff university Personal tutor system",font=TITLE_FONT).grid(row=2,sticky=W, columnspan=2)
+        self.frame = Frame(master)
+        self.a = Button(self.frame, text = 'Quota of tutees ', font=FONT, command = self.openFile1)
+        self.b = Button(self.frame, text = 'Search for individual students ',font=FONT, command = self.openFile2)
+        self.c = Button(self.frame, text = 'list of tutees for a particular personal tutor ',font=FONT, command = self.openFile3)
+        self.a.grid(row = 3,column=2, columnspan=2)
+        self.b.grid(row = 4,column=2  )
+        self.c.grid(row = 5,column=2 )
+        self.frame.grid()
+    def openFile1(self):
+        os.startfile("tuteequota.py")
     
-    def __init__(self, *args, **kwargs):
-        tk.Tk.__init__(self, *args, **kwargs)
+    def openFile2(self):
+        os.startfile("tuteequota.py")#place your file name here in accordance to the button names above
 
-        container = tk.Frame(self)
-        container.pack(side="top", fill="both", expand=True)
-        container.grid_rowconfigure(0, weight=1)
-        container.grid_columnconfigure(0, weight=1)
-    
+    def openFile3(self):
+        os.startfile("tuteequota.py")
 
-        self.frames = {}
-        for F in (StartPage, search, quit):
-            page_name = F.__name__
-            frame = F(parent=container, controller=self)
-            self.frames[page_name] = frame
-
-            frame.grid(row=0, column=0, sticky="nsew")
-
-        self.show_frame("StartPage")
-
-    def show_frame(self, page_name):
-        frame = self.frames[page_name]
-        frame.tkraise()
-
-class quit(tk.Frame):
-    def quit(self):
-        global root
-        root.quit()
-
-    #root = Tk()
-    #while True:
-    #    Button(root, text="Quit", command=quit).pack()
-   #     root.mainloop()
-
-class StartPage(tk.Frame):
-
-    def __init__(self, parent, controller, quit):
-        tk.Frame.__init__(self, parent)
-        self.controller = controller
-        label = tk.Label(self, text="Cardiff university, Personal Tutor system ", font=TITLE_FONT)
-        label.pack(side="top", fill="x", pady=10)
-
-        button1 = tk.Button(self, text="Continue",
-                            command=lambda: controller.show_frame("search"))
-        button2 = tk.Button(self, text="Exit ",
-                            command=lambda: controller.show_frame("quit"))#exit tk function
-        button1.pack()
-        button2.pack()
-
-
-class search(tk.Frame):
-
-    def __init__(self, parent, controller, quit):
-        tk.Frame.__init__(self, parent)
-        self.controller = controller
-        label = tk.Label(self, text="Please choose a search", font=TITLE_FONT)
-        label.pack(side="top", fill="x", pady=10)
-        button1 = tk.Button(self, text="list of tutees for a particular personal tutor",
-                            command=lambda: controller.show_frame(""))
-        button2 = tk.Button(self, text=" Search for individual students ",
-                            command=lambda: controller.show_frame(""))#links to function needs to trigger input 
-        button3 = tk.Button(self, text="Quota of tutees",
-                            command=lambda: controller.show_frame(""))
-        button4 = tk.Button(self, text="Back",
-                           command=lambda: controller.show_frame("StartPage"))
-        button1.pack()
-        button2.pack()
-        button3.pack()
-        button4.pack()
-                                                                  
-
-if __name__ == "__main__":
-    app = SampleApp()
-    app.mainloop()
+root = Tk()
+app = App(root)
+root.mainloop()
