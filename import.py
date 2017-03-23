@@ -17,8 +17,8 @@ sAcadYear = []
 sEmail = []
 
 
-def openCSV(filename):
-    with open(filename) as csvfile:
+def openCSV():
+    with open("test.csv") as csvfile:
         rdr = csv.reader(csvfile)
         next(rdr)
         for row in rdr:
