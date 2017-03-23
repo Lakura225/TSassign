@@ -33,7 +33,7 @@ def getvalue():
             
             
  
-Label(root,text="Quota of the tutees",font=TITLE_FONT).grid(row=0, column=1,sticky=W)
+Label(root,text="Quota of tutees",font=TITLE_FONT).grid(row=0, column=1,sticky=W)
 Label(root, text="The sytem will only return data for valid ID's so if no output is returned please re enter the ID ",font=FONT).grid(row=2, column=0, columnspan=2)
 Label(root,text="Please enter a tutor ID: ", font=FONT).grid(row=3, column=0, sticky=W)
 Entry(root, width=50, textvariable= inp).grid(row=3, column=1, sticky=W)
