@@ -6,7 +6,7 @@ Search = "testor"
 conn = sqlite3.connect('Students.db')
 
 class App(Frame):
-
+    
     def __init__(self, parent):
         Frame.__init__(self, parent)
         self.connection = sqlite3.connect('Students.db')
@@ -19,7 +19,6 @@ class App(Frame):
 
     def CreateUI(self):
         tv = Treeview(self)
-        data = self.ReadDB()
         tv['columns'] = ('Student_Code', 'Surname', 'Forename1', 'Forename2', 'Tutor', 'Acad_Year', 'Univ_Email')
         tv.heading("#0", text='Student Code', anchor='w')
         tv.column("#0", anchor="w")
@@ -35,10 +34,7 @@ class App(Frame):
         tv.column('Acad_Year', anchor='center', width=100)
         tv.heading('Univ_Email', text='Email')
         tv.column('Univ_Email', anchor='center', width=100)
-        for index, dat in enumerate(data):
-            self.tv.insert(text=dat[0]).grid(row=index+1, column=0)
-            self.tv.insert(text=dat[1]).grid(row=index+1, column=1)
-            self.tv.insert(text=dat[2]).grid(row=index+1, column=2)
+        self.DisplayThem()
         tv.grid(sticky = (N,S,W,E))
         self.treeview = tv
         self.grid_rowconfigure(0, weight = 1)
@@ -46,11 +42,10 @@ class App(Frame):
         
     def DisplayThem(self):
         data = self.ReadDB()
-        tve = Treeview(self)
         for index, dat in enumerate(data):
-            self.tve.insert(self.master, text=dat[0]).grid(row=index+1, column=0)
-            self.tve.insert(self.master, text=dat[1]).grid(row=index+1, column=1)
-            self.tve.insert(self.master, text=dat[2]).grid(row=index+1, column=2)
+            Label(self.master, text=dat[0]).grid(row=index+1, column=0)
+            Label(self.master, text=dat[1]).grid(row=index+1, column=1)
+            Label(self.master, text=dat[2]).grid(row=index+1, column=2)
 
     def ReadDB(self):
         self.cur.execute("SELECT * FROM Student_List WHERE Tutor = ?",(Search,))
