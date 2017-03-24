@@ -27,7 +27,7 @@ def getvalue():
     else:
         for row in rows:
             Label(root, text=" The quota of tutees : " ,font=FONT).grid(row=10,column=0,sticky=W, columnspan=2)
-            Label(root, text="              ", font=FONT).grid(row=10,column=1,sticky=W, columnspan=2)
+            Label(root, text="             ", font=FONT).grid(row=10,column=1,sticky=W, columnspan=2)
             Label(root, text=rows  , font=FONT).grid(row=10,column=1,sticky=W )
             
             
