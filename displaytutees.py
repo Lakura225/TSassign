@@ -48,13 +48,6 @@ class App:
     def ReadDB(self, searched):
         self.cur.execute("SELECT * FROM Student_List WHERE Tutor = ?",(searched,))
         return self.cur.fetchall()
-    
-    def openFile2(self):
-        self.root.destroy()
-        os.startfile("tuteequota.py")#place your file name here in accordance to the button names above
-
-    def openFile3(self):
-        os.startfile("roadtodisplay.py")
 
 
 root = Tk()
