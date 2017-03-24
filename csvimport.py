@@ -31,8 +31,8 @@ Acad_Year = []
 Univ_Email = []
 s=[Student_Code, Surname, Forname1, Forname2, Tutor, Course, Acad_Year, Univ_Email]
 
-def openCSV():
-    with open("test.csv") as csvfile:
+def openCSV(filename):
+    with open("filename.csv") as csvfile:
         rdr = csv.reader(csvfile)
         next(rdr)
         for row in rdr:
@@ -58,8 +58,6 @@ def CSVtoMySql():
         conn.rollback()
 
 
-
-
 def method2(Filename):
     import csv, sqlite3
 
@@ -77,4 +75,3 @@ def method2(Filename):
         to_db)
     con.commit()
     con.close()
-    
