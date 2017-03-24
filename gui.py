@@ -23,7 +23,7 @@ class App:
         os.startfile("tuteequota.py")
     
     def openFile2(self):
-        os.startfile("tuteequota.py")#place your file name here in accordance to the button names above
+        os.startfile("StudentSearch.py") #place your file name here in accordance to the button names above
 
     def openFile3(self):
         os.startfile("displaytutees.py")
