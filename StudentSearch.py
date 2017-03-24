@@ -43,7 +43,6 @@ class App:
 
         #retrieve data
         data = self.ReadDB(searchent1,searchent2)
-        row = 8
 
         #declare faux table labels
         Label(self.master, text='Student Code').grid(row=7, column=0)
