@@ -13,9 +13,11 @@ class App:
         self.a = Button(self.frame, text = 'Quota of tutees ', font=FONT, command = self.openFile1)
         self.b = Button(self.frame, text = 'Search for individual students ',font=FONT, command = self.openFile2)
         self.c = Button(self.frame, text = 'list of tutees for a particular personal tutor ',font=FONT, command = self.openFile3)
+        self.d = Button(self.frame, text = 'Upload CSV file', font=FONT, command = self.openFile4)
         self.a.grid(row = 3,column=2, columnspan=2)
         self.b.grid(row = 4,column=2  )
         self.c.grid(row = 5,column=2 )
+        self.d.grid(row = 6,column=2)
         self.frame.grid()
     def openFile1(self):
         os.startfile("tuteequota.py")
@@ -25,6 +27,8 @@ class App:
 
     def openFile3(self):
         os.startfile("displaytutees.py")
+    def openFile4(self):
+        os.startfile("csvimport.py")
 
 root = Tk()
 app = App(root)
