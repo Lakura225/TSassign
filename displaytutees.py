@@ -1,19 +1,25 @@
 import sqlite3
 from tkinter import *
 import os
+#connects to the database
 conn = sqlite3.connect('Students.db')
 
+#Sets font
 TITLE_FONT = ("Helvetica", 18 )
 FONT=("Helvetica", 13)
 
+#Creates a GUI with tkinter
 class App:
     def __init__(self, master):
         self.master = master
         root.title("Personal Tutor System")
+        #Establishes a connection with the database within the GUI
         self.connection = sqlite3.connect('Students.db')
         self.cur = self.connection.cursor()
+        #Title of the GUI
         Label(root,text="Cardiff university Personal tutor system",font=TITLE_FONT).grid(row=2,sticky=W, columnspan=2)
         self.frame = Frame(master)
+        #Variable to store the tutor
         self.search=StringVar()
         Label(root,text="Enter a tutor name here:").grid(row=3, sticky=W)
         self.a = Button(self.frame, text = 'Enter',font=FONT, command = self.DisplayThem)
@@ -22,8 +28,8 @@ class App:
         self.b.grid(row = 4, column=2)
         self.frame.grid()
 
+    #Function to output the results in a table structure
     def DisplayThem(self):
-        searched = 'testory'
         searched = self.search.get()
         data = self.ReadDB(searched)
         Label(self.master, text='Student Code').grid(row=7, column=0)
@@ -45,6 +51,7 @@ class App:
             Label(self.master, text=dat[6]).grid(row=row+index+1, column=6)
             Label(self.master, text=dat[7]).grid(row=row+index+1, column=7)
 
+    #Function to read the data from database
     def ReadDB(self, searched):
         self.cur.execute("SELECT * FROM Student_List WHERE Tutor = ?",(searched,))
         return self.cur.fetchall()
